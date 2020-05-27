@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
-    //Script references
-    [SerializeField]
-    internal Player player;
-
     internal bool canMoveUp { get; set; }
     internal bool canMoveDown { get; set; }
 

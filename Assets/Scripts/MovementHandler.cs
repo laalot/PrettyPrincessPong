@@ -6,10 +6,12 @@ public class MovementHandler : MonoBehaviour
 {
     //Script references
     [SerializeField]
-    internal Player player;
+    internal Paddle paddle;
 
     //Component references
     private Rigidbody2D rb2d;
+
+    private float movementDirection;
 
     void Awake()
     {
@@ -22,17 +24,20 @@ public class MovementHandler : MonoBehaviour
         ApplyMovementForce();
     }
 
+    public void setMovementDirection(float movementDirection)
+    {
+        this.movementDirection = movementDirection;
+    }
+
     private void ApplyMovementForce()
     {
-        var movementDirection = player.inputHandler.movementDirection;
-
-        if (movementDirection == 1.0f && player.collisionHandler.canMoveUp)
+        if (movementDirection == 1.0f && paddle.collisionHandler.canMoveUp)
         {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * player.paddleSpeed) * Time.fixedDeltaTime);
+            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * paddle.paddleSpeed) * Time.fixedDeltaTime);
         }
-        if (movementDirection == -1.0f && player.collisionHandler.canMoveDown)
+        if (movementDirection == -1.0f && paddle.collisionHandler.canMoveDown)
         {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * player.paddleSpeed) * Time.fixedDeltaTime);
+            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * paddle.paddleSpeed) * Time.fixedDeltaTime);
         }
     }
 }
