@@ -10,10 +10,6 @@ public class OpponentInput : MonoBehaviour
     [SerializeField]
     internal Transform ball;
 
-    //Attributes
-    [SerializeField]
-    public float paddleSpeed;
-
     // Update is called once per frame
     void Update()
     {
