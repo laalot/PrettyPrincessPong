@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ScoreTracker : MonoBehaviour
 {
-    public static int playerScore = 0;
-    public static int opponentScore = 0;
+    public int playerScore = 0;
+    public int opponentScore = 0;
 
     private Text text;
 
@@ -20,12 +20,12 @@ public class ScoreTracker : MonoBehaviour
         text.text = (playerScore + " | " + opponentScore).ToString();
     }
 
-    public static void incrementPlayerScore()
+    public void incrementPlayerScore()
     {
         playerScore++;
     }
 
-    public static void incrementOpponentScore()
+    public void incrementOpponentScore()
     {
         opponentScore++;
     }

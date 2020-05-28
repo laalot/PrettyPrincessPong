@@ -18,11 +18,11 @@ public class OpponentInput : MonoBehaviour
 
     private void SeekBall()
     {
-        if (ball.position.y > (transform.position.y + 2f))
+        if (ball.position.y > (transform.position.y + 2.5f))
         {
             movementHandler.setMovementDirection(1.0f);
         }
-        else if (ball.position.y < (transform.position.y - 2f))
+        else if (ball.position.y < (transform.position.y - 2.5f))
         {
             movementHandler.setMovementDirection(-1.0f);
         }

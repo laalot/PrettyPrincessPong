@@ -34,11 +34,11 @@ public class MovementHandler : MonoBehaviour
     {
         if (movementDirection == 1.0f && collisionHandler.canMoveUp)
         {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * movementSpeed) * Time.fixedDeltaTime);
+            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection) * movementSpeed * Time.fixedDeltaTime);
         }
         if (movementDirection == -1.0f && collisionHandler.canMoveDown)
         {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * movementSpeed) * Time.fixedDeltaTime);
+            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection) * movementSpeed * Time.fixedDeltaTime);
         }
     }
 }
