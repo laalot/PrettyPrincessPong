@@ -6,12 +6,14 @@ public class MovementHandler : MonoBehaviour
 {
     //Script references
     [SerializeField]
-    internal Paddle paddle;
+    internal CollisionHandler collisionHandler;
 
     //Component references
     private Rigidbody2D rb2d;
 
     private float movementDirection;
+
+    public float movementSpeed = 15.0f;
 
     void Awake()
     {
@@ -31,13 +33,13 @@ public class MovementHandler : MonoBehaviour
 
     private void ApplyMovementForce()
     {
-        if (movementDirection == 1.0f && paddle.collisionHandler.canMoveUp)
+        if (movementDirection == 1.0f && collisionHandler.canMoveUp)
         {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * paddle.paddleSpeed) * Time.fixedDeltaTime);
+            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * movementSpeed) * Time.fixedDeltaTime);
         }
-        if (movementDirection == -1.0f && paddle.collisionHandler.canMoveDown)
+        if (movementDirection == -1.0f && collisionHandler.canMoveDown)
         {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * paddle.paddleSpeed) * Time.fixedDeltaTime);
+            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection * movementSpeed) * Time.fixedDeltaTime);
         }
     }
 }

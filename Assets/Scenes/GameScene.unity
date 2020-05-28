@@ -316,7 +316,6 @@ GameObject:
   - component: {fileID: 539144904}
   - component: {fileID: 539144903}
   - component: {fileID: 539144905}
-  - component: {fileID: 539144909}
   - component: {fileID: 539144906}
   - component: {fileID: 539144908}
   - component: {fileID: 539144907}
@@ -413,8 +412,8 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &539144905
-CapsuleCollider2D:
+--- !u!61 &539144905
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -427,8 +426,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_Direction: 0
+  m_EdgeRadius: 0
 --- !u!114 &539144906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +452,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementHandler: {fileID: 539144908}
   ball: {fileID: 1289286889}
-  paddleSpeed: 15
 --- !u!114 &539144907
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -468,22 +476,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a4cef4465be4a12a66f60595a08867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle: {fileID: 539144909}
---- !u!114 &539144909
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539144901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f963e1365822344f09f906a6095e6271, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementHandler: {fileID: 539144908}
   collisionHandler: {fileID: 539144907}
-  paddleSpeed: 15
+  movementSpeed: 15
 --- !u!1 &662357151
 GameObject:
   m_ObjectHideFlags: 0
@@ -11856,7 +11850,6 @@ GameObject:
   - component: {fileID: 1354162339}
   - component: {fileID: 1354162340}
   - component: {fileID: 1354162341}
-  - component: {fileID: 1354162345}
   - component: {fileID: 1354162344}
   - component: {fileID: 1354162343}
   - component: {fileID: 1354162342}
@@ -11953,8 +11946,8 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 5
---- !u!70 &1354162341
-CapsuleCollider2D:
+--- !u!61 &1354162341
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -11967,8 +11960,18 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_Direction: 0
+  m_EdgeRadius: 0
 --- !u!114 &1354162342
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11993,7 +11996,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a4cef4465be4a12a66f60595a08867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  paddle: {fileID: 1354162345}
+  collisionHandler: {fileID: 1354162342}
+  movementSpeed: 15
 --- !u!114 &1354162344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12007,21 +12011,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementHandler: {fileID: 1354162343}
---- !u!114 &1354162345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354162337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f963e1365822344f09f906a6095e6271, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementHandler: {fileID: 1354162343}
-  collisionHandler: {fileID: 1354162342}
-  paddleSpeed: 15
 --- !u!1 &1487785876
 GameObject:
   m_ObjectHideFlags: 0
