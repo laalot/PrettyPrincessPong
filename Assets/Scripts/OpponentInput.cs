@@ -10,19 +10,18 @@ public class OpponentInput : MonoBehaviour
     [SerializeField]
     internal Transform ball;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         SeekBall();
     }
 
     private void SeekBall()
     {
-        if (ball.position.y > (transform.position.y + 2.5f))
+        if (transform.position.y < ball.position.y)
         {
             movementHandler.setMovementDirection(1.0f);
         }
-        else if (ball.position.y < (transform.position.y - 2.5f))
+        else if (transform.position.y > ball.position.y)
         {
             movementHandler.setMovementDirection(-1.0f);
         }

@@ -477,7 +477,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionHandler: {fileID: 539144907}
-  movementSpeed: 15
+  movementSpeed: 20
 --- !u!1 &662357151
 GameObject:
   m_ObjectHideFlags: 0
@@ -11997,7 +11997,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   collisionHandler: {fileID: 1354162342}
-  movementSpeed: 15
+  movementSpeed: 20
 --- !u!114 &1354162344
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12289,6 +12289,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec746a14219b94b0aa78f21b07dc1be2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerScore: 0
+  opponentScore: 0
 --- !u!224 &1681027985
 RectTransform:
   m_ObjectHideFlags: 0
