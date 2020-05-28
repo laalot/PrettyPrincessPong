@@ -6,7 +6,7 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody2D rb2d;
 
-    public float ballSpeed = 150.0f;
+    public float ballSpeed = 20f;
 
     void Awake()
     {
