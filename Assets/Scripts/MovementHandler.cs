@@ -12,33 +12,54 @@ public class MovementHandler : MonoBehaviour
     private Rigidbody2D rb2d;
 
     private float movementDirection;
+    private float movementMagnitude;
 
-    public float movementSpeed = 15.0f;
+    public float movementSpeed = 15f;
+    public float movementFactor = 0.01f;
 
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
     }
 
+    private void Update()
+    {
+        if (movementMagnitude > 10.0f)
+        {
+            movementMagnitude = 10.0f;
+        }
+
+        Vector2 pos = transform.position;
+        pos.y = Mathf.Clamp(pos.y, -8.5f, 8.5f);
+        transform.position = pos;
+    }
+
     private void FixedUpdate()
     {
         ApplyMovementForce();
+
+        
+
+        //Vector2 pos = rb2d.position;
+        //pos.y = Mathf.Clamp(pos.y, -8.5f, 8.5f);
+        //rb2d.position = pos;
     }
 
-    public void setMovementDirection(float movementDirection)
+    public void SetMovement(float moveDir, float moveMag)
     {
-        this.movementDirection = movementDirection;
+        this.movementDirection = moveDir;
+        this.movementMagnitude = moveMag;
     }
 
     private void ApplyMovementForce()
     {
-        if (movementDirection == 1.0f && collisionHandler.canMoveUp)
+        if (movementDirection == 1.0f && collisionHandler.canMove)
         {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection) * movementSpeed * Time.fixedDeltaTime);
+            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection) * (movementSpeed * (movementFactor * movementMagnitude) * Time.fixedDeltaTime));
         }
-        if (movementDirection == -1.0f && collisionHandler.canMoveDown)
+        else if (movementDirection == -1.0f & collisionHandler.canMove)
         {
-            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection) * movementSpeed * Time.fixedDeltaTime);
+            rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection) * (movementSpeed * (movementFactor * movementMagnitude) * Time.fixedDeltaTime));
         }
     }
-}
+}   

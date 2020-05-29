@@ -4,36 +4,26 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
-    internal bool canMoveUp { get; set; }
-    internal bool canMoveDown { get; set; }
+    internal bool canMove { get; set; }
 
     private void Awake()
     {
-        canMoveUp = true;
-        canMoveDown = true;
+        canMove = true;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Walls"))
+        if (collision.gameObject.CompareTag("Ball"))
         {
-            if (collision.GetContact(0).point.y > transform.position.y)
-            {
-                canMoveUp = false;
-            }
-            else if (collision.GetContact(0).point.y < transform.position.y)
-            {
-                canMoveDown = false;
-            }
+            canMove = false;
         }
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Walls"))
+        if (collision.gameObject.CompareTag("Ball"))
         {
-            canMoveUp = true;
-            canMoveDown = true;
+            canMove = true;
         }
     }
 }

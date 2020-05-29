@@ -34,6 +34,6 @@ public class PlayerInput : MonoBehaviour
     void OnMove(InputAction.CallbackContext input)
     {
         movementDirection = input.ReadValue<float>();
-        movementHandler.setMovementDirection(movementDirection);
+        movementHandler.SetMovement(movementDirection, 10.0f); 
     }
 }

@@ -17,17 +17,20 @@ public class OpponentInput : MonoBehaviour
 
     private void SeekBall()
     {
+        var movementDirection = 0.0f;
+        var movementMagnitude = 0.0f;
+
         if (transform.position.y < ball.position.y)
         {
-            movementHandler.setMovementDirection(1.0f);
+            movementDirection = 1.0f;
+            movementMagnitude = ball.position.y - transform.position.y;
         }
         else if (transform.position.y > ball.position.y)
         {
-            movementHandler.setMovementDirection(-1.0f);
+            movementDirection = -1.0f;
+            movementMagnitude = transform.position.y - ball.position.y;
         }
-        else
-        {
-            movementHandler.setMovementDirection(0.0f);
-        }
+
+        movementHandler.SetMovement(movementDirection, movementMagnitude);
     }
 }

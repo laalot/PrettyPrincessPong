@@ -6,7 +6,8 @@ public class Ball : MonoBehaviour
 {
     private Rigidbody2D rb2d;
 
-    public float ballSpeed = 75.0f;
+    public float ballSpeed = 2.5f;
+    public float maxBallSpeed = 100.0f;
 
     private Vector2 movementVector;
 
@@ -24,11 +25,38 @@ public class Ball : MonoBehaviour
         ResetBall();
     }
 
+    private void Update()
+    {
+        if (rb2d.velocity.magnitude > maxBallSpeed)
+        {
+            rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, maxBallSpeed);
+        }
+    }
+
     private void ResetBall()
     {
         rb2d.velocity = Vector2.zero;
         rb2d.MovePosition(new Vector2(0.0f, 0.0f));
-        movementVector = new Vector2(Random.Range(-1.0f, 1.0f), Random.Range(-1.0f, 1.0f)).normalized;
+
+        int serveDirection = Random.Range(0, 3);
+
+        if (serveDirection == 0)
+        {
+            movementVector = new Vector2(1.0f, 1.0f);
+        }
+        else if (serveDirection == 1)
+        {
+            movementVector = new Vector2(-1.0f, 1.0f);
+        }
+        else if (serveDirection == 2)
+        {
+            movementVector = new Vector2(1.0f, -1.0f);
+        }
+        else if (serveDirection == 3)
+        {
+            movementVector = new Vector2(-1.0f, -1.0f);
+        }
+
         rb2d.AddForce(movementVector * ballSpeed, ForceMode2D.Impulse);
     }
 
