@@ -20,20 +20,18 @@ public class OpponentInput : MonoBehaviour
         var movementDirection = 0.0f;
         var movementMagnitude = 0.0f;
 
-        if (ball.GetComponent<Rigidbody2D>().velocity.x < 0)
+        if (ball.GetComponent<Rigidbody2D>().velocity.x > 0)
         {
-            return;
-        }
-
-        if (transform.position.y < ball.position.y)
-        {
-            movementDirection = 1.0f;
-            movementMagnitude = ball.position.y - transform.position.y;
-        }
-        else if (transform.position.y > ball.position.y)
-        {
-            movementDirection = -1.0f;
-            movementMagnitude = transform.position.y - ball.position.y;
+            if (transform.position.y < ball.position.y)
+            {
+                movementDirection = 1.0f;
+                movementMagnitude = ball.position.y - transform.position.y;
+            }
+            else if (transform.position.y > ball.position.y)
+            {
+                movementDirection = -1.0f;
+                movementMagnitude = transform.position.y - ball.position.y;
+            }
         }
 
         movementHandler.SetMovement(movementDirection, movementMagnitude);

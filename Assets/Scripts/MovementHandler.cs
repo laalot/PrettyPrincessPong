@@ -36,13 +36,7 @@ public class MovementHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        ApplyMovementForce();
-
-        
-
-        //Vector2 pos = rb2d.position;
-        //pos.y = Mathf.Clamp(pos.y, -8.5f, 8.5f);
-        //rb2d.position = pos;
+        ApplyMovement();
     }
 
     public void SetMovement(float moveDir, float moveMag)
@@ -51,7 +45,7 @@ public class MovementHandler : MonoBehaviour
         this.movementMagnitude = moveMag;
     }
 
-    private void ApplyMovementForce()
+    private void ApplyMovement()
     {
         if (movementDirection == 1.0f && collisionHandler.canMove)
         {
