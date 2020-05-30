@@ -4,10 +4,6 @@ using UnityEngine;
 
 public class MovementHandler : MonoBehaviour
 {
-    //Script references
-    [SerializeField]
-    internal CollisionHandler collisionHandler;
-
     //Component references
     private Rigidbody2D rb2d;
 
@@ -47,11 +43,11 @@ public class MovementHandler : MonoBehaviour
 
     private void ApplyMovement()
     {
-        if (movementDirection == 1.0f && collisionHandler.canMove)
+        if (movementDirection == 1.0f)
         {
             rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection) * (movementSpeed * (movementFactor * movementMagnitude) * Time.fixedDeltaTime));
         }
-        else if (movementDirection == -1.0f & collisionHandler.canMove)
+        else if (movementDirection == -1.0f)
         {
             rb2d.MovePosition(rb2d.position + new Vector2(0.0f, movementDirection) * (movementSpeed * (movementFactor * movementMagnitude) * Time.fixedDeltaTime));
         }

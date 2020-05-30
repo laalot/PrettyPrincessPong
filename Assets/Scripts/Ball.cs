@@ -43,7 +43,7 @@ public class Ball : MonoBehaviour
         rb2d.velocity = Vector2.zero;
         rb2d.MovePosition(new Vector2(0.0f, 0.0f));
 
-        int serveDirection = Random.Range(0, 3);
+        int serveDirection = Random.Range(0, 4);
 
         if (serveDirection == 0)
         {

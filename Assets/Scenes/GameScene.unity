@@ -272,7 +272,7 @@ GameObject:
   - component: {fileID: 522949845}
   m_Layer: 0
   m_Name: Grid
-  m_TagString: Untagged
+  m_TagString: Walls
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,10 +318,9 @@ GameObject:
   - component: {fileID: 539144905}
   - component: {fileID: 539144906}
   - component: {fileID: 539144908}
-  - component: {fileID: 539144907}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: Untagged
+  m_TagString: Paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -355,7 +354,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: f5c8e984098b946dfaa6a3fb77a28ae7, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -452,18 +451,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementHandler: {fileID: 539144908}
   ball: {fileID: 1289286889}
---- !u!114 &539144907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 539144901}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8097b9ac0e3ae430e9f3a390b4b354c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &539144908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -476,8 +463,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a4cef4465be4a12a66f60595a08867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionHandler: {fileID: 539144907}
-  movementSpeed: 15
+  movementSpeed: 20
   movementFactor: 0.4
 --- !u!1 &662357151
 GameObject:
@@ -11602,7 +11588,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289286888}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -10.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1752017185}
@@ -11864,10 +11850,9 @@ GameObject:
   - component: {fileID: 1354162341}
   - component: {fileID: 1354162344}
   - component: {fileID: 1354162343}
-  - component: {fileID: 1354162342}
   m_Layer: 0
   m_Name: Paddle
-  m_TagString: Untagged
+  m_TagString: Paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -11952,7 +11937,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 6200000, guid: f5c8e984098b946dfaa6a3fb77a28ae7, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -11984,18 +11969,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1354162342
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1354162337}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8097b9ac0e3ae430e9f3a390b4b354c5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1354162343
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12008,7 +11981,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70a4cef4465be4a12a66f60595a08867, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collisionHandler: {fileID: 1354162342}
   movementSpeed: 15
   movementFactor: 0.2
 --- !u!114 &1354162344
