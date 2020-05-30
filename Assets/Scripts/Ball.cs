@@ -9,8 +9,7 @@ public class Ball : MonoBehaviour
     public float ballSpeed = 2.5f;
     public float maxBallSpeed = 100.0f;
 
-    public float batImpulseMagnitude = 10.0f;
-    public float angleWideness = 0.5f;
+    public float angleWideness = 1f;
 
     private Vector2 movementVector;
 
@@ -74,12 +73,13 @@ public class Ball : MonoBehaviour
         {
             var collisionPoint = collision.GetContact(0).point;
             var distanceFromPaddleCentre = collisionPoint.y - collision.collider.attachedRigidbody.position.y; // positive or negative
-            var collisionPointPortion = distanceFromPaddleCentre / collision.collider.bounds.size.y;
-            var angle = collisionPointPortion * Mathf.PI * angleWideness;
-            var impulseX = Mathf.Cos(angle);
-            var impulseY = Mathf.Sin(angle);
+            var collisionPointPortion = distanceFromPaddleCentre / collision.collider.bounds.size.y; // value between -0.5 and 0.5
+
+            var velocityAngle = collisionPointPortion * Mathf.PI * angleWideness;
+            var newVelocityX = Mathf.Cos(velocityAngle);
+            var newVelocityY = Mathf.Sin(velocityAngle);
             var currentSpeed = rb2d.velocity.magnitude;
-            rb2d.velocity = new Vector2(impulseX, impulseY) * currentSpeed;
+            rb2d.velocity = new Vector2(newVelocityX, newVelocityY) * currentSpeed;
         }
     }
 

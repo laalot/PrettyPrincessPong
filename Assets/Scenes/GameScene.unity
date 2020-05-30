@@ -11706,7 +11706,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ballSpeed: 2.5
   maxBallSpeed: 75
-  batImpulseMagnitude: 100
+  angleWideness: 0.5
 --- !u!1 &1314678005
 GameObject:
   m_ObjectHideFlags: 0
