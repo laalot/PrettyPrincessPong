@@ -31,6 +31,11 @@ public class Ball : MonoBehaviour
         {
             rb2d.velocity = Vector2.ClampMagnitude(rb2d.velocity, maxBallSpeed);
         }
+
+        Vector2 pos = transform.position;
+        pos.x = Mathf.Clamp(pos.x, -18.5f, 18.5f);
+        pos.y = Mathf.Clamp(pos.y, -10.5f, 10.5f);
+        transform.position = pos;
     }
 
     private void ResetBall()

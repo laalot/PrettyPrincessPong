@@ -15,7 +15,7 @@ public class CollisionHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            canMove = false;
+            //doStuff
         }
     }
 
@@ -23,7 +23,7 @@ public class CollisionHandler : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ball"))
         {
-            canMove = true;
+            //doStuff
         }
     }
 }
