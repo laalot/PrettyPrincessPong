@@ -67,22 +67,6 @@ public class Ball : MonoBehaviour
         rb2d.AddForce(movementVector * ballSpeed, ForceMode2D.Impulse);
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Paddle"))
-        {
-            var collisionPoint = collision.GetContact(0).point;
-            var distanceFromPaddleCentre = collisionPoint.y - collision.collider.attachedRigidbody.position.y; // positive or negative
-            var collisionPointPortion = distanceFromPaddleCentre / collision.collider.bounds.size.y; // value between -0.5 and 0.5
-
-            var velocityAngle = collisionPointPortion * Mathf.PI * angleWideness;
-            var newVelocityX = Mathf.Cos(velocityAngle);
-            var newVelocityY = Mathf.Sin(velocityAngle);
-            var currentSpeed = rb2d.velocity.magnitude;
-            rb2d.velocity = new Vector2(newVelocityX, newVelocityY) * currentSpeed;
-        }
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("PlayerGoal"))
@@ -94,6 +78,21 @@ public class Ball : MonoBehaviour
         {
             scoreTracker.incrementPlayerScore();
             ResetBall();
+        }
+
+        if (collision.gameObject.CompareTag("Paddle"))
+        {
+            var collisionPoint = collision.ClosestPoint(rb2d.position);
+            var distanceFromPaddleCentre = collisionPoint.y - collision.attachedRigidbody.position.y; // positive or negative
+            var collisionPointPortion = distanceFromPaddleCentre / collision.bounds.size.y; // value between -0.5 and 0.5
+
+            var newVelocityXSign = collision.transform.position.x < rb2d.position.x ? 1 : -1;
+
+            var velocityAngle = collisionPointPortion * Mathf.PI * angleWideness;
+            var newVelocityX = Mathf.Cos(velocityAngle);
+            var newVelocityY = Mathf.Sin(velocityAngle);
+            var currentSpeed = rb2d.velocity.magnitude;
+            rb2d.velocity = new Vector2(newVelocityX * newVelocityXSign, newVelocityY) * currentSpeed;
         }
     }
 }
