@@ -6,7 +6,6 @@ using Cinemachine;
 public class Ball : MonoBehaviour
 {
     //Component references
-    public AudioClip wallHit;
     public AudioClip[] paddleHitClips;
 
     public Material trailMaterial;
@@ -142,14 +141,6 @@ public class Ball : MonoBehaviour
         rb2d.AddForce(movementVector * ballSpeed, ForceMode2D.Impulse);
 
         trail.emitting = true;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Walls"))
-        {
-            //audio.PlayOneShot(wallHit, 1);
-        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
