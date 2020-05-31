@@ -271,7 +271,6 @@ public class Ball : MonoBehaviour
             case 8:
                 trail.material = rainbowTrailMaterial;
                 trail.colorGradient = whiteGradient;
-                //audio.pitch = 2.5f;
                 break;
         }
     }
