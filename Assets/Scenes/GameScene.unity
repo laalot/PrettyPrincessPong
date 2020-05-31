@@ -414,6 +414,7 @@ GameObject:
   - component: {fileID: 539144905}
   - component: {fileID: 539144906}
   - component: {fileID: 539144908}
+  - component: {fileID: 539144907}
   m_Layer: 0
   m_Name: Paddle
   m_TagString: Paddle
@@ -547,6 +548,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movementHandler: {fileID: 539144908}
   ball: {fileID: 1289286889}
+--- !u!95 &539144907
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 539144901}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33f6a7dc9ad884724af671c58817fb9a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &539144908
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12250,6 +12270,7 @@ GameObject:
   - component: {fileID: 1354162341}
   - component: {fileID: 1354162344}
   - component: {fileID: 1354162343}
+  - component: {fileID: 1354162342}
   m_Layer: 0
   m_Name: Paddle
   m_TagString: Paddle
@@ -12369,6 +12390,25 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 5}
   m_EdgeRadius: 0
+--- !u!95 &1354162342
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1354162337}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 33f6a7dc9ad884724af671c58817fb9a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &1354162343
 MonoBehaviour:
   m_ObjectHideFlags: 0

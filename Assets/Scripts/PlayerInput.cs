@@ -9,6 +9,9 @@ public class PlayerInput : MonoBehaviour
     [SerializeField]
     internal MovementHandler movementHandler;
 
+    //Component references
+    private Animator animator;
+
     //Input
     PlayerInputAction inputAction;
 
@@ -19,6 +22,8 @@ public class PlayerInput : MonoBehaviour
     {
         inputAction = new PlayerInputAction();
         inputAction.Player.Move.performed += OnMove;
+
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable()
@@ -29,6 +34,19 @@ public class PlayerInput : MonoBehaviour
     private void OnDisable()
     {
         inputAction.Disable();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            animator.SetBool("paddleHit", true);
+        }
+    }
+
+    public void AnimationFinished()
+    {
+        animator.SetBool("paddleHit", false);
     }
 
     void OnMove(InputAction.CallbackContext input)
