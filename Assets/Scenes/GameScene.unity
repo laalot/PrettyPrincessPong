@@ -11707,6 +11707,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballSpeed: 2.5
+  rainbowRushAddedSpeed: 16
   maxBallSpeed: 75
   angleWideness: 0.5
   wallHit: {fileID: 8300000, guid: 0e1716f2d43af43b6b035b8675570038, type: 3}

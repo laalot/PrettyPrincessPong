@@ -7,6 +7,7 @@ public class Ball : MonoBehaviour
     private Rigidbody2D rb2d;
 
     public float ballSpeed = 2.5f;
+    public float rainbowRushAddedSpeed = 4f;
     public float maxBallSpeed = 100.0f;
 
     public float angleWideness = 1f;
@@ -112,9 +113,12 @@ public class Ball : MonoBehaviour
 
         if (collision.gameObject.CompareTag("Paddle"))
         {
-            if (numberOfBounces < 8)
+            numberOfBounces++;
+
+            var speedToAdd = 0f;
+            if (numberOfBounces == 8)
             {
-                numberOfBounces++;
+                speedToAdd = rainbowRushAddedSpeed;
             }
 
             audio.PlayOneShot(paddleHit, 1);
@@ -128,8 +132,8 @@ public class Ball : MonoBehaviour
             var velocityAngle = collisionPointPortion * Mathf.PI * angleWideness;
             var newVelocityX = Mathf.Cos(velocityAngle);
             var newVelocityY = Mathf.Sin(velocityAngle);
-            var currentSpeed = rb2d.velocity.magnitude;
-            rb2d.velocity = new Vector2(newVelocityX * newVelocityXSign, newVelocityY) * currentSpeed;
+            var newSpeed = rb2d.velocity.magnitude + speedToAdd;
+            rb2d.velocity = new Vector2(newVelocityX * newVelocityXSign, newVelocityY) * newSpeed;
         }
     }
 
