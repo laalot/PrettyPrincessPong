@@ -7,7 +7,7 @@ public class Ball : MonoBehaviour
 {
     //Component references
     public AudioClip wallHit;
-    public AudioClip paddleHit;
+    public AudioClip[] paddleHitClips;
 
     public Material trailMaterial;
     public Material rainbowTrailMaterial;
@@ -42,6 +42,8 @@ public class Ball : MonoBehaviour
 
     private AudioSource audio;
 
+    private HarmonyGenerator harmonyGenerator;
+
     private TrailRenderer trail;
 
     //Colours
@@ -68,6 +70,7 @@ public class Ball : MonoBehaviour
         movementVector.Normalize();
         scoreTracker = GameObject.Find("ScoreTracker").GetComponent<ScoreTracker>();
         audio = GetComponent<AudioSource>();
+        harmonyGenerator = new HarmonyGenerator();
         trail = GetComponent<TrailRenderer>();
 
         virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
@@ -145,7 +148,7 @@ public class Ball : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Walls"))
         {
-            audio.PlayOneShot(wallHit, 1);
+            //audio.PlayOneShot(wallHit, 1);
         }
     }
 
@@ -177,7 +180,8 @@ public class Ball : MonoBehaviour
                 shakeElapsedTime = shakeDuration;
             }
 
-            audio.PlayOneShot(paddleHit, 1);
+            var hitSoundEffect = paddleHitClips[harmonyGenerator.NextNote()];
+            audio.PlayOneShot(hitSoundEffect, 1);
 
             var collisionPoint = collision.ClosestPoint(rb2d.position);
             var distanceFromPaddleCentre = collisionPoint.y - collision.attachedRigidbody.position.y; // positive or negative
@@ -251,7 +255,6 @@ public class Ball : MonoBehaviour
             case 0:
                 trail.material = trailMaterial;
                 trail.colorGradient = whiteGradient;
-                audio.pitch = 2.0f;
                 break;
             case 1:
                 trail.colorGradient = redGradient;
@@ -277,7 +280,7 @@ public class Ball : MonoBehaviour
             case 8:
                 trail.material = rainbowTrailMaterial;
                 trail.colorGradient = whiteGradient;
-                audio.pitch = 2.5f;
+                //audio.pitch = 2.5f;
                 break;
         }
     }
