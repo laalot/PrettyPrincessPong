@@ -28,6 +28,23 @@ public class Ball : MonoBehaviour
 
     private int numberOfBounces;
 
+    private Color red;
+    private Color orange;
+    private Color yellow;
+    private Color green;
+    private Color blue;
+    private Color purple;
+    private Color violet;
+
+    Gradient whiteGradient = new Gradient();
+    Gradient redGradient = new Gradient();
+    Gradient orangeGradient = new Gradient();
+    Gradient yellowGradient = new Gradient();
+    Gradient greenGradient = new Gradient();
+    Gradient blueGradient = new Gradient();
+    Gradient purpleGradient = new Gradient();
+    Gradient violetGradient = new Gradient();
+
     void Awake()
     {
         rb2d = GetComponent<Rigidbody2D>();
@@ -35,6 +52,8 @@ public class Ball : MonoBehaviour
         scoreTracker = GameObject.Find("ScoreTracker").GetComponent<ScoreTracker>();
         audio = GetComponent<AudioSource>();
         trail = GetComponent<TrailRenderer>();
+
+        SetUpColours();
     }
 
     private void Start()
@@ -54,7 +73,7 @@ public class Ball : MonoBehaviour
         pos.y = Mathf.Clamp(pos.y, -10.5f, 10.5f);
         transform.position = pos;
 
-        UpdateBallAppearance();
+        chargeRainbowBall();
     }
 
     private void ResetBall()
@@ -137,47 +156,91 @@ public class Ball : MonoBehaviour
         }
     }
 
-    private void UpdateBallAppearance()
+    private void SetUpColours()
+    {
+        red = ConvertRGBToFloat(189, 31, 63);
+        orange = ConvertRGBToFloat(236, 97, 74);
+        yellow = ConvertRGBToFloat(244, 176, 60);
+        green = ConvertRGBToFloat(70, 198, 87);
+        blue = ConvertRGBToFloat(57, 83, 192);
+        purple = ConvertRGBToFloat(102, 59, 147);
+        violet = ConvertRGBToFloat(195, 75, 145);
+
+        whiteGradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(Color.white, 0.0f), new GradientColorKey(Color.white, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) }
+        );
+
+        redGradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(red, 0.0f), new GradientColorKey(red, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) }
+        );
+
+        orangeGradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(orange, 0.0f), new GradientColorKey(orange, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) }
+        );
+
+        yellowGradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(yellow, 0.0f), new GradientColorKey(yellow, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) }
+        );
+
+        greenGradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(green, 0.0f), new GradientColorKey(green, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) }
+        );
+
+        blueGradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(blue, 0.0f), new GradientColorKey(blue, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) }
+        );
+
+        purpleGradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(purple, 0.0f), new GradientColorKey(purple, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) }
+        );
+
+        violetGradient.SetKeys(
+            new GradientColorKey[] { new GradientColorKey(violet, 0.0f), new GradientColorKey(violet, 1.0f) },
+            new GradientAlphaKey[] { new GradientAlphaKey(1.0f, 0.0f), new GradientAlphaKey(0.0f, 1.0f) }
+        );
+    }
+
+    private void chargeRainbowBall()
     {
         switch (numberOfBounces)
         {
             case 0:
                 trail.material = trailMaterial;
-                trail.startColor = Color.white;
-                trail.endColor = Color.white;
+                trail.colorGradient = whiteGradient;
+                audio.pitch = 2.0f;
                 break;
             case 1:
-                trail.startColor = ConvertRGBToFloat(189, 31, 63);
-                trail.endColor = ConvertRGBToFloat(189, 31, 63);
+                trail.colorGradient = redGradient;
                 break;
             case 2:
-                trail.startColor = ConvertRGBToFloat(236, 97, 74);
-                trail.endColor = ConvertRGBToFloat(236, 97, 74);
+                trail.colorGradient = orangeGradient;
                 break;
             case 3:
-                trail.startColor = ConvertRGBToFloat(244, 176, 60);
-                trail.endColor = ConvertRGBToFloat(244, 176, 60);
+                trail.colorGradient = yellowGradient;
                 break;
             case 4:
-                trail.startColor = ConvertRGBToFloat(70, 198, 87);
-                trail.endColor = ConvertRGBToFloat(70, 198, 87);
+                trail.colorGradient = greenGradient;
                 break;
             case 5:
-                trail.startColor = ConvertRGBToFloat(57, 83, 192);
-                trail.endColor = ConvertRGBToFloat(57, 83, 192);
+                trail.colorGradient = blueGradient;
                 break;
             case 6:
-                trail.startColor = ConvertRGBToFloat(102, 59, 147);
-                trail.endColor = ConvertRGBToFloat(102, 59, 147);
+                trail.colorGradient = purpleGradient;
                 break;
             case 7:
-                trail.startColor = ConvertRGBToFloat(195, 75, 145);
-                trail.endColor = ConvertRGBToFloat(195, 75, 145);
+                trail.colorGradient = violetGradient;
                 break;
             case 8:
                 trail.material = rainbowTrailMaterial;
-                trail.startColor = Color.white;
-                trail.endColor = Color.white;
+                trail.colorGradient = whiteGradient;
+                audio.pitch = 2.5f;
                 break;
         }
     }
