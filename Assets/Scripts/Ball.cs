@@ -9,6 +9,8 @@ public class Ball : MonoBehaviour
     public float ballSpeed = 2.5f;
     public float maxBallSpeed = 100.0f;
 
+    public float angleWideness = 1f;
+
     private Vector2 movementVector;
 
     private ScoreTracker scoreTracker;
@@ -70,11 +72,27 @@ public class Ball : MonoBehaviour
         if (collision.gameObject.CompareTag("PlayerGoal"))
         {
             scoreTracker.incrementOpponentScore();
+            ResetBall();
         }
         if (collision.gameObject.CompareTag("OpponentGoal"))
         {
             scoreTracker.incrementPlayerScore();
+            ResetBall();
         }
-        ResetBall();
+
+        if (collision.gameObject.CompareTag("Paddle"))
+        {
+            var collisionPoint = collision.ClosestPoint(rb2d.position);
+            var distanceFromPaddleCentre = collisionPoint.y - collision.attachedRigidbody.position.y; // positive or negative
+            var collisionPointPortion = distanceFromPaddleCentre / collision.bounds.size.y; // value between -0.5 and 0.5
+
+            var newVelocityXSign = collision.transform.position.x < rb2d.position.x ? 1 : -1;
+
+            var velocityAngle = collisionPointPortion * Mathf.PI * angleWideness;
+            var newVelocityX = Mathf.Cos(velocityAngle);
+            var newVelocityY = Mathf.Sin(velocityAngle);
+            var currentSpeed = rb2d.velocity.magnitude;
+            rb2d.velocity = new Vector2(newVelocityX * newVelocityXSign, newVelocityY) * currentSpeed;
+        }
     }
 }
