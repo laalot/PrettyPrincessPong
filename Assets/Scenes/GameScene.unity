@@ -11902,8 +11902,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4081abd0ed14e95ac7d8df4b560240, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallHit: {fileID: 8300000, guid: 0e1716f2d43af43b6b035b8675570038, type: 3}
-  paddleHit: {fileID: 8300000, guid: eb520281b868b4f93bed9f69869778b0, type: 3}
+  wallHit: {fileID: 8300000, guid: eb520281b868b4f93bed9f69869778b0, type: 3}
+  paddleHitClips:
+  - {fileID: 8300000, guid: dad517b94c5070b498cba5cce2ce27cb, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 9a8b9ad2567566f45b552c3346a9bc5a, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: ad1e32bb4275de642b6a842fd554b190, type: 3}
+  - {fileID: 8300000, guid: 7ae7f58e5db8ec341abbc2f65c628ca9, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 10c2e5e9ba30a424ba609c016c7f3d7a, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: 2abd182126152384497fd512414772a8, type: 3}
+  - {fileID: 0}
+  - {fileID: 8300000, guid: cc5b1849a4995ee42839496b4c63d2ea, type: 3}
+  - {fileID: 8300000, guid: bcebfb3b9fcbde24989d08978d47ab3c, type: 3}
   trailMaterial: {fileID: 10306, guid: 0000000000000000f000000000000000, type: 0}
   rainbowTrailMaterial: {fileID: 2100000, guid: 70802aa1f83014e7189fe8289d299c1b, type: 2}
   shakeDuration: 0.3
