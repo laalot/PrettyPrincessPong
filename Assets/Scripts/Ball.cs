@@ -1,22 +1,40 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class Ball : MonoBehaviour
 {
-    private Rigidbody2D rb2d;
+    //Component references
+    public AudioClip wallHit;
+    public AudioClip paddleHit;
 
+    public Material trailMaterial;
+    public Material rainbowTrailMaterial;
+
+
+    //Camera shake fields
+    public float shakeDuration = 0.3f;
+    public float shakeAmplitude = 5.0f;
+    public float shakeFrequency = 5.0f;
+
+    private float shakeElapsedTime = 0f;
+
+    public CinemachineVirtualCamera virtualCamera;
+    private CinemachineBasicMultiChannelPerlin virtualCameraNoise;
+
+    //Ball fields
     public float ballSpeed = 2.5f;
     public float rainbowRushAddedSpeed = 4f;
     public float maxBallSpeed = 100.0f;
 
     public float angleWideness = 1f;
 
-    public AudioClip wallHit;
-    public AudioClip paddleHit;
+    private int numberOfBounces;
 
-    public Material trailMaterial;
-    public Material rainbowTrailMaterial;
+
+    //Private component references;
+    private Rigidbody2D rb2d;
 
     private Vector2 movementVector;
 
@@ -26,8 +44,7 @@ public class Ball : MonoBehaviour
 
     private TrailRenderer trail;
 
-    private int numberOfBounces;
-
+    //Colours
     private Color red;
     private Color orange;
     private Color yellow;
@@ -53,6 +70,8 @@ public class Ball : MonoBehaviour
         audio = GetComponent<AudioSource>();
         trail = GetComponent<TrailRenderer>();
 
+        virtualCameraNoise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+
         SetUpColours();
     }
 
@@ -72,6 +91,19 @@ public class Ball : MonoBehaviour
         pos.x = Mathf.Clamp(pos.x, -18.5f, 18.5f);
         pos.y = Mathf.Clamp(pos.y, -10.5f, 10.5f);
         transform.position = pos;
+
+        if (shakeElapsedTime > 0)
+        {
+            virtualCameraNoise.m_AmplitudeGain = shakeAmplitude;
+            virtualCameraNoise.m_FrequencyGain = shakeFrequency;
+
+            shakeElapsedTime -= Time.deltaTime;
+        }
+        else
+        {
+            virtualCameraNoise.m_AmplitudeGain = 0f;
+            shakeElapsedTime = 0f;
+        }
 
         chargeRainbowBall();
     }
@@ -138,6 +170,11 @@ public class Ball : MonoBehaviour
             if (numberOfBounces == 8)
             {
                 speedToAdd = rainbowRushAddedSpeed;
+            }
+
+            if (numberOfBounces >= 8)
+            {
+                shakeElapsedTime = shakeDuration;
             }
 
             audio.PlayOneShot(paddleHit, 1);
