@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class OpponentInput : MonoBehaviour
 {
+    //Component references
+    private Animator animator;
+
     [SerializeField]
     internal MovementHandler movementHandler;
 
     [SerializeField]
     internal Transform ball;
 
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
+
     private void Update()
     {
         SeekBall();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ball"))
+        {
+            animator.SetBool("paddleHit", true);
+        }
+    }
+
+    public void AnimationFinished()
+    {
+        animator.SetBool("paddleHit", false);
     }
 
     private void SeekBall()
