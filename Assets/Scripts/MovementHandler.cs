@@ -39,10 +39,7 @@ public class MovementHandler : MonoBehaviour
         Vector2 pos = transform.position;
         pos.y = Mathf.Clamp(pos.y, -8.5f, 8.5f);
         transform.position = pos;
-    }
 
-    private void FixedUpdate()
-    {
         ApplyMovement();
     }
 
