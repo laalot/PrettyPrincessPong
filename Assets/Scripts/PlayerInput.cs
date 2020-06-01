@@ -12,6 +12,13 @@ public class PlayerInput : MonoBehaviour
     //Component references
     private Animator animator;
 
+    //Wings
+    public GameObject topWing;
+    public GameObject bottomWing;
+
+    private Animator topWingAnimator;
+    private Animator bottomWingAnimator;
+
     //Input
     PlayerInputAction inputAction;
 
@@ -24,6 +31,22 @@ public class PlayerInput : MonoBehaviour
         inputAction.Player.Move.performed += OnMove;
 
         animator = GetComponent<Animator>();
+        topWingAnimator = topWing.GetComponent<Animator>();
+        bottomWingAnimator = bottomWing.GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        if (movementHandler.IsMoving())
+        {
+            topWingAnimator.speed = 1.5f;
+            bottomWingAnimator.speed = 1.5f;
+        }
+        else
+        {
+            topWingAnimator.speed = 0.5f;
+            bottomWingAnimator.speed = 0.5f;
+        }
     }
 
     private void OnEnable()
@@ -52,6 +75,6 @@ public class PlayerInput : MonoBehaviour
     void OnMove(InputAction.CallbackContext input)
     {
         movementDirection = input.ReadValue<float>();
-        movementHandler.SetMovement(movementDirection, 10.0f); 
+        movementHandler.SetMovement(movementDirection, 10.0f);
     }
 }

@@ -10,6 +10,8 @@ public class MovementHandler : MonoBehaviour
     private float movementDirection;
     private float movementMagnitude;
 
+    private bool isMoving;
+
     public float movementSpeed = 15f;
     public float movementFactor = 0.01f;
 
@@ -25,6 +27,15 @@ public class MovementHandler : MonoBehaviour
             movementMagnitude = 10.0f;
         }
 
+        if (movementDirection != 0.0f)
+        {
+            isMoving = true;
+        }
+        else
+        {
+            isMoving = false;
+        }
+
         Vector2 pos = transform.position;
         pos.y = Mathf.Clamp(pos.y, -8.5f, 8.5f);
         transform.position = pos;
@@ -34,6 +45,11 @@ public class MovementHandler : MonoBehaviour
     {
         ApplyMovement();
     }
+
+    public bool IsMoving()
+    {
+        return isMoving;
+    } 
 
     public void SetMovement(float moveDir, float moveMag)
     {

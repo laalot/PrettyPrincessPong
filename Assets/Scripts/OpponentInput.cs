@@ -7,6 +7,13 @@ public class OpponentInput : MonoBehaviour
     //Component references
     private Animator animator;
 
+    //Wings
+    public GameObject topWing;
+    public GameObject bottomWing;
+
+    private Animator topWingAnimator;
+    private Animator bottomWingAnimator;
+
     [SerializeField]
     internal MovementHandler movementHandler;
 
@@ -16,11 +23,25 @@ public class OpponentInput : MonoBehaviour
     private void Awake()
     {
         animator = GetComponent<Animator>();
+
+        topWingAnimator = topWing.GetComponent<Animator>();
+        bottomWingAnimator = bottomWing.GetComponent<Animator>();
     }
 
     private void Update()
     {
         SeekBall();
+
+        if (movementHandler.IsMoving())
+        {
+            topWingAnimator.speed = 1.5f;
+            bottomWingAnimator.speed = 1.5f;
+        }
+        else
+        {
+            topWingAnimator.speed = 0.5f;
+            bottomWingAnimator.speed = 0.5f;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
